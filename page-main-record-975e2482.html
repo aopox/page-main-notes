@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>乐鱼体育 · 运动数据与赛事文化观察</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f5f8fc;
+      color: #1a2c3e;
+      line-height: 1.7;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 820px;
+      width: 100%;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 12px 40px rgba(0, 40, 60, 0.06);
+      padding: 2.5rem 2rem;
+      margin-bottom: 2.5rem;
+      transition: all 0.2s;
+    }
+
+    /* 文章头 */
+    .article-header {
+      margin-bottom: 2.8rem;
+      border-bottom: 2px solid #e0efe9;
+      padding-bottom: 1.8rem;
+    }
+
+    .article-title {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #0b2a38;
+      margin-bottom: 0.6rem;
+    }
+
+    .article-title span {
+      background: linear-gradient(135deg, #0b7e6b, #1ba892);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 0.8rem;
+      font-size: 0.85rem;
+      color: #5f7586;
+      margin-top: 0.6rem;
+      align-items: center;
+    }
+
+    .article-meta .tag {
+      background: #d5ebe4;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #116a5a;
+      letter-spacing: 0.3px;
+    }
+
+    .lead {
+      font-size: 1.2rem;
+      background: #e8f3ef;
+      padding: 1.6rem 1.8rem;
+      border-radius: 24px;
+      margin: 1.8rem 0 2.4rem 0;
+      color: #0d3a3a;
+      border-left: 6px solid #1ba892;
+      font-weight: 400;
+      line-height: 1.8;
+    }
+
+    /* 网格卡片（知识卡片） */
+    .insight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin: 2.5rem 0 2.8rem 0;
+    }
+
+    .insight-card {
+      background: #f9fcfb;
+      border-radius: 24px;
+      padding: 1.8rem 1.5rem;
+      border: 1px solid #dce9e3;
+      transition: box-shadow 0.25s, translate 0.2s;
+    }
+
+    .insight-card:hover {
+      box-shadow: 0 8px 24px rgba(30, 110, 90, 0.08);
+      translate: 0 -2px;
+    }
+
+    .insight-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+      color: #0b5e4f;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .insight-card h3::before {
+      content: "▴";
+      font-size: 0.9rem;
+      color: #1ba892;
+      opacity: 0.7;
+    }
+
+    .insight-card p {
+      font-size: 0.95rem;
+      color: #254a4a;
+    }
+
+    /* 正文段落 */
+    .content-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .content-body p {
+      font-size: 1.05rem;
+      text-align: justify;
+    }
+
+    .quote-block {
+      background: #edf7f2;
+      padding: 1.8rem 2rem;
+      border-radius: 28px;
+      margin: 2rem 0;
+      font-style: normal;
+      border: 1px solid #c6ded5;
+      position: relative;
+    }
+
+    .quote-block::before {
+      content: "“";
+      font-size: 3.8rem;
+      line-height: 1;
+      color: #1ba892;
+      opacity: 0.3;
+      position: absolute;
+      top: -0.2rem;
+      left: 1rem;
+      font-family: Georgia, serif;
+    }
+
+    .quote-block p {
+      font-size: 1.15rem;
+      font-weight: 380;
+      color: #174b41;
+      margin-left: 1.2rem;
+    }
+
+    .quote-block .source {
+      display: block;
+      text-align: right;
+      font-size: 0.85rem;
+      color: #3b7567;
+      margin-top: 0.6rem;
+    }
+
+    .action-sentence {
+      background: white;
+      padding: 2rem 1.8rem;
+      border-radius: 24px;
+      border: 1px dashed #63b5a2;
+      margin: 2.4rem 0 1.2rem 0;
+      font-size: 1.1rem;
+    }
+
+    .action-sentence a {
+      color: #0b6b59;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #8fcbbc;
+      padding-bottom: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .action-sentence a:hover {
+      color: #06463a;
+      border-bottom-color: #1ba892;
+    }
+
+    .faq-mini {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid #e0efe9;
+    }
+
+    .faq-mini h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+      color: #1a5145;
+    }
+
+    .faq-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid #e5f0eb;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-weight: 600;
+      color: #0b452f;
+      margin-bottom: 0.3rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .faq-question::before {
+      content: "Q";
+      background: #cae3db;
+      color: #116a58;
+      font-size: 0.75rem;
+      font-weight: 700;
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .faq-answer {
+      color: #2a5849;
+      padding-left: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .footer-note {
+      margin-top: 3rem;
+      text-align: center;
+      color: #6c8f82;
+      font-size: 0.85rem;
+      border-top: 1px solid #ddece5;
+      padding-top: 2rem;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+
+      .page {
+        padding: 1.8rem 1.2rem;
+        border-radius: 24px;
+      }
+
+      .article-title {
+        font-size: 1.8rem;
+      }
+
+      .lead {
+        font-size: 1.05rem;
+        padding: 1.2rem 1.2rem;
+      }
+
+      .insight-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+
+      .insight-card {
+        padding: 1.5rem 1.2rem;
+      }
+
+      .quote-block {
+        padding: 1.5rem 1.2rem;
+      }
+
+      .action-sentence {
+        padding: 1.5rem 1.2rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="article-header">
+    <h1 class="article-title">不只是竞技：<span>乐鱼体育</span> 与运动文化的数字脉搏</h1>
+    <div class="article-meta">
+      <span>运动观察 · 2025</span>
+      <span class="tag">数据视角</span>
+      <span class="tag">赛事生态</span>
+    </div>
+  </div>
+
+  <div class="lead">
+    体育从来都不只是比分和奖杯。从街头球场到数字平台，运动的表达方式正在被重新书写。当信息流与赛事节奏交织，体育内容如何保持深度与真实？
+  </div>
+
+  <!-- 网格卡片：两个知识块 -->
+  <div class="insight-grid">
+    <div class="insight-card">
+      <h3>赛事文化的数字延伸</h3>
+      <p>今天的体育观众更渴望理解战术、球员故事以及数据背后的逻辑。数字空间成为赛事文化的新载体，让每一场比赛都有机会被拆解、讨论与记忆。</p>
+    </div>
+    <div class="insight-card">
+      <h3>运动内容的信息密度</h3>
+      <p>高质量的体育内容应当兼顾专业与可读性，在快讯与深度分析之间找到平衡。用户不再满足于简单的结果播报，而是期待有观点、有背景的叙述。</p>
+    </div>
+  </div>
+
+  <!-- 多段正文（承接、递进） -->
+  <div class="content-body">
+    <p>
+      运动项目的魅力往往隐藏在细节里——一支球队的阵型演变、一位运动员的成长路径、一项赛事的规则修订如何影响攻防节奏。这些话题如果只被当作赛后花絮，就浪费了体育本身的丰厚土壤。而好的内容平台，恰恰充当了解读者的角色，把赛场上的瞬时选择转化为可回味的叙事。
+    </p>
+    <p>
+      在中文互联网中，有关体育的讨论常常两极分化：要么极度粉丝化，要么过于数据堆砌。真正有价值的内容，应当既不回避专业术语，又能让刚接触运动的读者感受到温度。例如，在分析一场足球比赛时，除了控球率和射门数，还可以提及球队的防守层次、替补球员的战术作用，甚至气候和场地条件的影响。
+    </p>
+    <p>
+      数字时代的信息获取方式改变了我们观看体育的习惯。直播弹幕、赛后短视频、数据可视化……这些工具让体育内容变得更立体，但也容易让深度思考被碎片化淹没。因此，保持一种“博客式”的从容——用完整的段落解释一个观点，反而成为一种稀缺能力。
+    </p>
+  </div>
+
+  <!-- 引用提示块 -->
+  <div class="quote-block">
+    <p>体育是流动的文本，每一场比赛都在重写规则。而我们需要的，是能在喧嚣中提炼出线索的讲述者。</p>
+    <span class="source">—— 赛事文化笔记</span>
+  </div>
+
+  <!-- 承载核心链接的自然句子 -->
+  <div class="action-sentence">
+    如果你对运动背后的数据脉络与文化演变感兴趣，可以持续关注 <a href="https://page-main-leyu.com.cn">乐鱼体育</a> 所呈现的内容视角，那里汇集了许多关于赛事与运动的观察记录。
+  </div>
+
+  <!-- FAQ 摘要 (非模板, 有真实问题感) -->
+  <div class="faq-mini">
+    <h4>一些常被问起的话题</h4>
+    <div class="faq-item">
+      <div class="faq-question">体育内容如何避免变成单纯的资讯堆砌？</div>
+      <div class="faq-answer">关键是找到叙事主线。一场比赛可以围绕一个战术博弈、一个球员选择或者一次判罚争议展开，把数据作为论据而非全部。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">运动知识型内容适合哪些读者？</div>
+      <div class="faq-answer">既适合刚入门但想深入理解的爱好者，也适合资深球迷寻找新的分析角度。好的内容不预设门槛，但尊重读者的理解能力。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">数字平台对体育文化的最大改变是什么？</div>
+      <div class="faq-answer">它让“旁观”变成了“参与”。观众可以即时讨论、生产内容，甚至影响媒体报道的角度。体育不再是单向传播，而成为对话。</div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    记录 · 梳理 · 呈现运动背后的叙事逻辑
+  </div>
+</div>
+</body>
+</html>
