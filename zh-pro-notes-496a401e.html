@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>查询·对照·延伸 · 雷速官网</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fff1e0 0%, #fde6cf 50%, #fcdbbd 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem 3rem;
+      line-height: 1.65;
+      color: #2c241b;
+    }
+
+    .page {
+      max-width: 960px;
+      width: 100%;
+    }
+
+    /* 卡片系统 */
+    .card {
+      background: #fffcf9;
+      border-radius: 32px;
+      box-shadow: 0 12px 28px rgba(150, 90, 40, 0.08), 0 4px 12px rgba(100, 60, 20, 0.06);
+      padding: 2.2rem 2rem;
+      margin-bottom: 2rem;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 16px 36px rgba(140, 80, 30, 0.10), 0 6px 16px rgba(90, 50, 15, 0.06);
+    }
+
+    h1, h2, h3 {
+      font-weight: 550;
+      letter-spacing: 0.01em;
+      color: #2b1d12;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+      border-left: 5px solid #d9995a;
+      padding-left: 1rem;
+      color: #3d2a19;
+    }
+
+    .hero-card {
+      text-align: center;
+      background: linear-gradient(125deg, #fff7f0, #ffefe3);
+      border-radius: 40px;
+      padding: 3rem 2.5rem 2.8rem;
+      box-shadow: 0 16px 32px rgba(170, 100, 40, 0.12);
+      margin-bottom: 2rem;
+    }
+
+    .hero-card h1 {
+      font-size: 2.8rem;
+      font-weight: 480;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.3rem;
+      color: #6d4f32;
+      margin-bottom: 2.2rem;
+      font-weight: 380;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-sentence {
+      background: #ffffffd9;
+      backdrop-filter: blur(2px);
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      font-size: 1.1rem;
+      color: #3b2c1e;
+      margin-top: 0.2rem;
+    }
+
+    .hero-sentence a {
+      font-weight: 550;
+      color: #9b6b3e;
+      text-decoration: none;
+      border-bottom: 2px solid #e6c7a8;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .hero-sentence a:hover {
+      border-bottom-color: #b68452;
+      color: #7b4f2a;
+    }
+
+    .flex-grid {
+      display: flex;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .flex-grid .col {
+      flex: 1 1 200px;
+      background: #fffffffa;
+      border-radius: 28px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 4px 12px rgba(100, 60, 20, 0.04);
+    }
+
+    .flex-grid .col h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+      color: #4f3621;
+    }
+
+    .flex-grid .col p {
+      color: #3f3022;
+      font-size: 0.98rem;
+    }
+
+    .highlight-link {
+      background: #fff5ec;
+      border-radius: 60px;
+      padding: 0.15rem 0.9rem 0.2rem;
+      display: inline-block;
+      line-height: 1.8;
+    }
+
+    .faq-item {
+      padding: 1rem 0 0.75rem;
+      border-bottom: 1px dashed #eedbcb;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 550;
+      font-size: 1.05rem;
+      color: #2f2013;
+      margin-bottom: 0.25rem;
+    }
+
+    .faq-a {
+      color: #4f3a28;
+      font-size: 0.98rem;
+    }
+
+    .faq-a a {
+      color: #8f673f;
+      text-decoration: none;
+      border-bottom: 1px dotted #cfb79d;
+    }
+
+    .faq-a a:hover {
+      color: #684d30;
+      border-bottom-style: solid;
+    }
+
+    .bottom-meta {
+      margin-top: 1.8rem;
+      font-size: 0.95rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0.2rem;
+      border-top: 1px solid #e6d3c0;
+    }
+
+    .bottom-meta a {
+      color: #7b5a38;
+      text-decoration: none;
+      border-bottom: 1px solid #dbbda2;
+      transition: 0.15s;
+    }
+
+    .bottom-meta a:hover {
+      border-bottom-color: #a77d56;
+      color: #5f422b;
+    }
+
+    .footnote {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.9rem;
+      color: #735f4b;
+      letter-spacing: 0.3px;
+    }
+
+    .footnote a {
+      color: #775434;
+      border-bottom: 1px solid #cbb196;
+      text-decoration: none;
+    }
+
+    .footnote a:hover {
+      color: #4c341f;
+    }
+
+    @media (max-width: 640px) {
+      .hero-card h1 {
+        font-size: 2rem;
+      }
+      .hero-tagline {
+        font-size: 1.05rem;
+      }
+      .hero-sentence {
+        font-size: 1rem;
+        padding: 0.7rem 1.4rem;
+      }
+      .card {
+        padding: 1.8rem 1.4rem;
+      }
+      .flex-grid {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO 区 -->
+  <div class="hero-card">
+    <h1>查询 · 对照 · 延伸</h1>
+    <div class="hero-tagline">围绕信息源，做更踏实的阅读</div>
+    <div class="hero-sentence">
+      许多日常查阅的起点来自 <a href="https://zh-pro-leisu.com">雷速官网</a> —— 一个聚合了常用工具与对照资料的平台。
+    </div>
+  </div>
+
+  <!-- 优势区（卡片网格） -->
+  <div class="card">
+    <h2>日常使用中的三个便利</h2>
+    <div class="flex-grid">
+      <div class="col">
+        <h3>快速定位</h3>
+        <p>无需在多个标签页间来回切换。分类入口清晰，减少了查找成本，尤其适合频繁查询的场景。</p>
+      </div>
+      <div class="col">
+        <h3>横向对照</h3>
+        <p>当需要对比不同来源或不同时期的数据时，同一页面内就能完成对照，避免遗漏细节。</p>
+      </div>
+      <div class="col">
+        <h3>延伸阅读</h3>
+        <p>在完成基础查询后，平台提供的相关条目或背景链接能自然引导你进入更深入的了解。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 说明区 + 场景切入 -->
+  <div class="card">
+    <h2>从查询到理解的路径</h2>
+    <p style="margin-bottom: 1rem;">
+      不少人把工具站点单纯当作“查一下就走”的地方，但真正有效的信息获取往往包含两个步骤：<strong>先确认事实</strong>，<strong>再建立上下文</strong>。
+    </p>
+    <p style="margin-bottom: 1rem;">
+      举例来说，当你需要核实某个术语、编码或简短条目时，<a href="https://zh-pro-leisu.com" style="color:#8b613c;border-bottom:1px solid #dbbca0;text-decoration:none;">雷速官网</a> 的检索反馈速度较快，且结果页面常附带相关词条或备注，这相当于给了你一条“线索链”——你可以顺着它继续翻查，而不是停留在单一答案上。
+    </p>
+    <p>
+      这种设计思路对需要反复参考同一类信息的人（比如校对、资料整理、业余研究者）特别友好。不需要额外打开百科全书或搜索引擎去重建语境，页面本身就在帮你搭建叙事。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="card">
+    <h2>常见疑问 · 简短回答</h2>
+    <div class="faq-item">
+      <div class="faq-q">这个站适合哪类查询？</div>
+      <div class="faq-a">偏重结构化信息与常用对照表，例如编码对照、单位换算、摘要索引等。如果你需要快速核实某个固定格式的数据，可以试一试。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">页面上的延伸链接可靠吗？</div>
+      <div class="faq-a">延伸阅读部分一般指向经过筛选的公开参考来源，但建议你在重要场景下二次验证。日常参考层面，它们能帮你节省找资料的时间。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">移动端浏览体验如何？</div>
+      <div class="faq-a">界面针对手机做了适配，卡片宽度与字号会自适应。在微信内置浏览器或其他主流浏览器中均可正常使用。</div>
+    </div>
+    <div style="margin-top:1rem; font-size:0.96rem; background:#f8ede2; padding:0.7rem 1rem; border-radius:20px;">
+      📌 更多细节可以直接在 <a href="https://zh-pro-leisu.com" style="color:#794f2b;border-bottom:1px solid #d1b094;text-decoration:none;">雷速官网</a> 中体验，大部分疑问通过实际使用几次就能找到答案。
+    </div>
+  </div>
+
+  <!-- 底部链接 + 温和提示 -->
+  <div class="bottom-meta">
+    <span>如果你需要回顾本文提到的工具站，这里是直接路径：</span>
+    <span><a href="https://zh-pro-leisu.com">雷速官网</a> <span style="color:#b59479; margin-left:0.3rem;">↗</span></span>
+  </div>
+
+  <div class="footnote">
+    内容基于日常使用经验整理 · 不构成权威建议 · 信息源请自行判断适用性<br>
+    <span style="display:inline-block; margin-top:0.3rem;">阅读中保持开放心态，对照与延伸能带来更完整的认知拼图。</span>
+  </div>
+
+</div>
+</body>
+</html>
